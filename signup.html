@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vibefeed - Sign Up</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .signup-container {
+      background-color: #121212;
+      padding: 40px 30px;
+      border-radius: 15px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+    }
+
+    .logo {
+      text-align: center;
+      font-size: 34px;
+      font-weight: bold;
+      color: #e91e63;
+      margin-bottom: 25px;
+    }
+
+    label {
+      font-size: 14px;
+      display: block;
+      margin-bottom: 5px;
+      margin-top: 18px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      background: #1e1e1e;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 15px;
+    }
+
+    .toggle-password {
+      font-size: 12px;
+      color: #bbb;
+      margin-top: 5px;
+      cursor: pointer;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #e91e63;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-top: 30px;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background: #ff4081;
+    }
+
+    .links {
+      text-align: center;
+      font-size: 14px;
+      margin-top: 20px;
+    }
+
+    .links a {
+      color: #bbb;
+      text-decoration: none;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="signup-container">
+    <div class="logo">Vibefeed</div>
+    <form id="signupForm">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" placeholder="Your Name" required />
+
+      <label for="email">Email or Mobile</label>
+      <input type="text" id="email" placeholder="Enter email or mobile" required />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Create a password" required />
+
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" id="confirmPassword" placeholder="Re-enter password" required />
+
+      <div class="toggle-password" onclick="togglePassword()">👁️ Show/Hide Passwords</div>
+
+      <button type="submit" class="button">Sign Up</button>
+    </form>
+
+    <div class="links">
+      <p>Already have an account? <a href="login.html">Log in</a></p>
+    </div>
+  </div>
+
+  <script>
+    function togglePassword() {
+      const pass1 = document.getElementById("password");
+      const pass2 = document.getElementById("confirmPassword");
+      const type = pass1.type === "password" ? "text" : "password";
+      pass1.type = pass2.type = type;
+    }
+
+    document.getElementById("signupForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+      if (!name || !email || !password || !confirmPassword) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      // This is where you'd send data to backend (API)
+      alert("Sign up successful! (Demo)");
+    });
+  </script>
+</body>
+</html>

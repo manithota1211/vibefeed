@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vibefeed - Profile Setup</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background-color: #1e1e1e;
+      padding: 30px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      text-align: center;
+    }
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 20px;
+      border: 2px solid #444;
+      cursor: pointer;
+    }
+    input[type="text"],
+    input[type="url"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #2a2a2a;
+      color: white;
+      border: 1px solid #444;
+      border-radius: 6px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #6200ea;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      margin-top: 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    input[type="file"] {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://via.placeholder.com/120" alt="Profile Picture" id="preview" class="profile-pic" onclick="document.getElementById('profilePic').click()" />
+    <input type="file" id="profilePic" accept="image/*" onchange="previewImage(event)" />
+
+    <input type="text" id="name" placeholder="Full Name" required />
+    <input type="text" id="username" placeholder="Username" required />
+    <textarea id="bio" placeholder="Short Bio"></textarea>
+    <input type="text" id="hobbies" placeholder="Hobbies / Interests" />
+    <select id="gender">
+      <option value="">Select Gender</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+      <option value="other">Other</option>
+    </select>
+    <input type="url" id="link" placeholder="Link to share (e.g. portfolio, social)" />
+
+    <button onclick="submitProfile()">Continue to Feed</button>
+  </div>
+
+  <script>
+    function previewImage(event) {
+      const reader = new FileReader();
+      reader.onload = function () {
+        const output = document.getElementById('preview');
+        output.src = reader.result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+
+    function submitProfile() {
+      const name = document.getElementById('name').value;
+      const username = document.getElementById('username').value;
+      const bio = document.getElementById('bio').value;
+      const hobbies = document.getElementById('hobbies').value;
+      const gender = document.getElementById('gender').value;
+      const link = document.getElementById('link').value;
+
+      alert(`Welcome, ${name || username}! Your profile has been set.`);
+      // You can save this info to backend or localStorage here.
+    }
+  </script>
+</body>
+</html>
